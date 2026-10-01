@@ -1,6 +1,38 @@
 ﻿title: Start
+---
+hello
+<<if visited("Start")>>
+    again...
+<<else>>
+    for the first time
+<<endif>>
+<<jump Start>>
+===
+
+title: Start_dice
+---
+lets roll a dice
+<<if dice(6) == 6>>
+    you rolled a six!
+<<else>>
+    not very good, huh
+<<endif>>
+
+hello, lets start over again...
+<<change_light Orb1 LightRed>>
+let's take a deep breath...
+<<change_light Orb2 LightRed>>
+ok, we did it.
+<<change_light Orb1 LightGreen>>
+orb1: watch me grow!
+<<grow Orb1 1.5 1>>
+orb2: pff, thats nothing, watch ME grow!
+<<grow Orb2 10 1>>
+===
+
+title: Start_Moochi
 color: red
-position: 407,-59
+position: 338,91
 ---
 <<declare $playerName = "Bob">>
 <<declare $knowsName = false>>
@@ -42,7 +74,7 @@ moochi: hmm, we are the same...
 
 title: Question_Talking
 color: red
-position: 241,127
+position: 701,312
 ---
 moochi: idk, you came here...
 moochi: why are you here?
@@ -52,6 +84,7 @@ moochi: why are you here?
 ===
 
 title: Goodbye
+position: 336,533
 ---
 moochi: goodbye
 -> goodbye
@@ -65,7 +98,7 @@ moochi: goodbye
 
 title: Goodbye_Response
 color: red
-position: 381,573
+position: 337,835
 ---
 moochi: ok, goodbye
 -> are you really just gonna leave?
@@ -73,7 +106,7 @@ moochi: ok, goodbye
 ===
 
 title: Wait_Response
-position: -93,244
+position: -40,492
 group: wait
 ---
 moochi: what do you want?
@@ -84,7 +117,7 @@ moochi: what do you want?
 ===
 
 title: Game
-position: -43,544
+position: -40,718
 ---
 moochi: cool, i have a game for you
 ~THE GAME DOESNT EXIST YET~
