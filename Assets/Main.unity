@@ -508,6 +508,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 77cfedbbe0bca13419e31de1a59f0235, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
+  YarnProject: {fileID: 7545569452688597077, guid: 292961c0706c34f46866463637d15380, type: 3}
+  Node: Goodbye
 --- !u!1 &1567781292
 GameObject:
   m_ObjectHideFlags: 0
@@ -540,6 +542,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 77cfedbbe0bca13419e31de1a59f0235, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
+  YarnProject: {fileID: 0}
+  Node: 
 --- !u!135 &1567781294
 SphereCollider:
   m_ObjectHideFlags: 0

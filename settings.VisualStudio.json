@@ -1,5 +1,5 @@
 /* Visual Studio Settings File */
 {
   "textEditor.codeCompletions.general.codeCompletionsProviders": [],
-  "environment.documents.autoSave": false
+  "environment.documents.autoSave": true
 }
