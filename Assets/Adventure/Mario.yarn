@@ -1,0 +1,31 @@
+﻿title: Mario
+---
+Mario: Hello <<once>>
+<<if visited("Jerome")>>
+    <<jump Mario_VisitedJerome>>
+<<else>>
+
+<<endif>>
+===
+
+title: Mario_VisitedJerome
+---
+Mario: i see you talked to Jerome
+===
+
+title: Mario_NotVisitedJerome
+---
+Mario: How are you doing today?
+-> good
+    <<set $good = true>>
+-> not good
+    <<set $notgood = true>>
+===
+
+title: Jerome
+---
+Jemore: It's a me!
+<<if $good>>
+    oh, you're good then, tell me more....
+<<endif>>
+===
