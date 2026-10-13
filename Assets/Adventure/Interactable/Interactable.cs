@@ -6,14 +6,15 @@ public class Interactable : MonoBehaviour
 {
     public YarnProject Project;
 
-    [YarnNode("Project")]
+    //[YarnNode("Project")]
+    [YarnNode(nameof(Project))]
     public string Node;
-    
-    public DialogueRunner Dialogue;
     
     public void StartInteraction()
     {
         Debug.Log("started interaction");
-        Dialogue.StartDialogue(Node);
+        
+        //Dialogue.Instance.Runner.StartDialogue(Node);
+        Dialogue.Instance.StartNode(Node);
     }
 }

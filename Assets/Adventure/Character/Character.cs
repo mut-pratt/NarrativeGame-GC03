@@ -19,12 +19,18 @@ public class Character : MonoBehaviour
         transform.Rotate(Vector3.up, RotationSpeed * move.x * delta);
     }
 
-    private void OnTriggerEnter(Collider collision)
+    private void OnTriggerEnter(Collider other)
     {
-        Interactable other = collision.gameObject.GetComponent<Interactable>();
-        if (other)
+        Interactable interactable = other.GetComponent<Interactable>();
+        if (interactable)
         {
-            other.StartInteraction();
+            interactable.StartInteraction();
+        }
+
+        Collectable collectable = other.GetComponent<Collectable>();
+        if (collectable)
+        {
+            collectable.Collect();
         }
     }
 }
