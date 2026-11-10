@@ -8,17 +8,58 @@ public class Character : MonoBehaviour
     public InputActionReference Move;
     public bool IsTankControls;
     public Camera Camera;
+    public State CurrentState;
 
-    // Update is called once per frame
+    /// this function does something nice
+    public enum State
+    {
+        Idle,
+        Moving,
+        Talking,
+    }
+
     void Update()
     {
-        if (Dialogue.Instance.Runner.IsDialogueRunning)
-        {
-            return;
-        }
-
-        float delta = Time.deltaTime;
         Vector2 move = Move.action.ReadValue<Vector2>();
+
+        if (CurrentState == State.Idle)
+        {
+            if (Dialogue.Instance.Runner.IsDialogueRunning)
+            {
+                CurrentState = State.Talking;
+            }
+
+            if (move.magnitude > 0)
+            {
+                DoMove(move);
+                CurrentState = State.Moving;
+            }
+        }
+        else if (CurrentState == State.Moving)
+        {
+            DoMove(move);
+            
+            if (Dialogue.Instance.Runner.IsDialogueRunning)
+            {
+                CurrentState = State.Talking;
+            }
+            else if (move.magnitude == 0)
+            {
+                CurrentState = State.Idle;
+            }
+        }
+        else if (CurrentState == State.Talking)
+        {
+            if (!Dialogue.Instance.Runner.IsDialogueRunning)
+            {
+                CurrentState = State.Idle;
+            }
+        }
+    }
+        
+
+    void DoMove(Vector3 move) {
+        float delta = Time.deltaTime;
 
         if (IsTankControls)
         {
@@ -34,6 +75,26 @@ public class Character : MonoBehaviour
             // transform.position += move.y * Speed * delta * forward;
             // transform.position += move.x * Speed * delta * right;
             // transform.position += (move.y * forward + move.x * right) * Speed * delta;
+
+            var position = transform.position;
+            var forwards = transform.forward;
+            var hits = 0;
+            for (int i = 0; i < 100000; i ++)
+            {
+                if (Physics.Raycast(position + i * 0.001f * Vector3.up, forwards, 10f))
+                {
+                    hits++;
+                }
+            }
+
+            Debug.Log("hits: " + hits + " at current position " + transform.position);
+            Debug.Log($"hits: {hits} at current position {transform.position}", this);
+
+            if (hits > 10000)
+            {
+                transform.position += Vector3.forward;
+            }
+            
 
             Vector3 moveDir = move.y * forward + move.x * right;
             
